@@ -1,0 +1,119 @@
+@import '@fontsource/fira-mono';
+
+/*============
+Typography
+=============*/
+
+/* barlow-regular - latin */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/barlow-v11-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('./fonts/barlow-v11-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/barlow-v11-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./fonts/barlow-v11-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('./fonts/barlow-v11-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('./fonts/barlow-v11-latin-regular.svg#Barlow') format('svg'); /* Legacy iOS */
+}
+/* barlow-700 - latin */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/barlow-v11-latin-700.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('./fonts/barlow-v11-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/barlow-v11-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./fonts/barlow-v11-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('./fonts/barlow-v11-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('./fonts/barlow-v11-latin-700.svg#Barlow') format('svg'); /* Legacy iOS */
+}
+
+
+
+:root {
+	font-family: 'Barlow', Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-size: 16px;
+	--font-mono: 'Fira Mono', monospace;
+	--pure-white: #ffffff;
+	--primary-color: #b9c6d2;
+	--secondary-color: #d0dde9;
+	--tertiary-color: #edf0f8;
+	--accent-color: #0058e6;
+	--heading-color: rgba(0, 0, 0, 0.7);
+	--text-color: #444444;
+	--background-without-opacity: rgba(255, 255, 255, 0.7);
+	--column-width: 42rem;
+	--column-margin-top: 4rem;
+}
+
+body {
+	min-height: 100vh;
+	margin: 0;
+}
+
+
+#svelte {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+h1,
+h2 {
+	font-weight: 700;
+}
+
+p {
+	font-weight: 400;
+	color: var(--text-color);
+	line-height: 1.5;
+}
+
+a {
+	color: var(--accent-color);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1 {
+	font-size: 2rem;
+	text-align: center;
+}
+
+h2 {
+	font-size: 1rem;
+}
+
+pre {
+	font-size: 16px;
+	font-family: var(--font-mono);
+	background-color: rgba(255, 255, 255, 0.45);
+	border-radius: 3px;
+	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
+	padding: 0.5em;
+	overflow-x: auto;
+	color: var(--text-color);
+}
+
+input,
+button {
+	font-size: inherit;
+	font-family: inherit;
+}
+
+button:focus:not(:focus-visible) {
+	outline: none;
+}
+
+@media (min-width: 720px) {
+	h1 {
+		font-size: 2.4rem;
+	}
+}
