@@ -1,9 +1,11 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
+	import { browser } from '$app/env';
 	import * as THREE from 'three';
 	import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+	import { Mesh } from 'three';
 
-	let canvasEl;
+	let canvasEl: Element;
 
 	//scene
 	const scene = new THREE.Scene();
@@ -26,15 +28,48 @@
 	scene.add(camera);
 
 	//renderer
-	let renderer;
+	let renderer: THREE.WebGLRenderer;
 	export const createScene = (canvasEl) => {
 		renderer = new THREE.WebGLRenderer({ canvas: canvasEl });
 		renderer.setSize(sizes.width, sizes.height);
 		renderer.render(scene, camera);
 	};
 
+	//time
+	// let time = Date.now();
+
+	//Clock
+	const clock = new THREE.Clock();
+
+	//animation
+	const tick = () => {
+		// time
+		// const currentTime = Date.now(); //tick's time
+		// const deltaTime = currentTime - time; //every frame's time difference
+		// time = currentTime;
+
+		// update objects
+		// mesh.rotation.y += 0.01 * deltaTime; // this can stablize time across device, no matter the speed of GPU or CPU, another way is to use clock funtion from three.js
+
+		// Clock + update objects
+		const elapsedTime = clock.getElapsedTime();
+		// mesh.rotation.y = elapsedTime;
+
+		// the following makes camera rotates by fixing the focus on the object
+		camera.position.y = Math.sin(elapsedTime);
+		camera.position.x = Math.cos(elapsedTime);
+		camera.lookAt(mesh.position);
+
+		//render
+		renderer.render(scene, camera);
+		window.requestAnimationFrame(tick);
+	};
+
 	onMount(() => {
-		createScene(canvasEl);
+		if (browser) {
+			createScene(canvasEl);
+			tick();
+		}
 	});
 </script>
 
