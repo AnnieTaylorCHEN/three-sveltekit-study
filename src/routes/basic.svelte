@@ -3,9 +3,13 @@
 	import { browser } from '$app/env';
 	import * as THREE from 'three';
 	import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-	import { Mesh } from 'three';
 
-	let canvasEl: Element;
+	let canvasEl: HTMLElement;
+
+	const cursor = {
+		x: 0,
+		y: 0
+	};
 
 	//scene
 	const scene = new THREE.Scene();
@@ -23,9 +27,18 @@
 	};
 
 	//camera, 75 degree, aspect ratio
-	const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
+	const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 1, 1000);
 	camera.position.z = 3;
 	scene.add(camera);
+
+	//camera, orthographic
+	// const aspectRatio = sizes.width / sizes.height;
+	// const camera = new THREE.OrthographicCamera(-1 * aspectRatio, 1 * aspectRatio, 1, -1, 0.1, 100);
+	// camera.position.x = 2;
+	// camera.position.y = 2;
+	// camera.position.z = 2;
+	// camera.lookAt(mesh.position);
+	// scene.add(camera);
 
 	//renderer
 	let renderer: THREE.WebGLRenderer;
@@ -52,13 +65,19 @@
 		// mesh.rotation.y += 0.01 * deltaTime; // this can stablize time across device, no matter the speed of GPU or CPU, another way is to use clock funtion from three.js
 
 		// Clock + update objects
-		const elapsedTime = clock.getElapsedTime();
+		// const elapsedTime = clock.getElapsedTime();
 		// mesh.rotation.y = elapsedTime;
 
 		// the following makes camera rotates by fixing the focus on the object
-		camera.position.y = Math.sin(elapsedTime);
-		camera.position.x = Math.cos(elapsedTime);
-		camera.lookAt(mesh.position);
+		// camera.position.y = Math.sin(elapsedTime);
+		// camera.position.x = Math.cos(elapsedTime);
+		// camera.lookAt(mesh.position);
+
+		//update camera by moving the mouse
+		// camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3;
+		// camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3;
+		// camera.position.y = cursor.y * 5;
+		// camera.lookAt(mesh.position);
 
 		//render
 		renderer.render(scene, camera);
@@ -67,7 +86,24 @@
 
 	onMount(() => {
 		if (browser) {
+			window.addEventListener('mousemove', (e) => {
+				cursor.x = e.clientX / sizes.width - 0.5;
+				cursor.y = e.clientY / sizes.height - 0.5;
+				console.log(cursor);
+			});
 			createScene(canvasEl);
+			//controls
+			const controls = new OrbitControls(camera, canvasEl);
+			controls.enableDamping = true;
+
+			const tick = () => {
+				//controls update
+				controls.update();
+
+				//render
+				renderer.render(scene, camera);
+				window.requestAnimationFrame(tick);
+			};
 			tick();
 		}
 	});
