@@ -3,6 +3,8 @@
 	import { browser } from '$app/env';
 	import * as THREE from 'three';
 	import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+	import GUI from 'lil-gui';
+	import gsap from 'gsap';
 
 	let canvasEl: HTMLElement;
 
@@ -14,9 +16,17 @@
 	//scene
 	const scene = new THREE.Scene();
 
+	// parameters for debug tweaking
+	const parameters = {
+		color: '#f5c2c2',
+		spin: () => {
+			gsap.to(mesh.rotation, { duration: 1, y: mesh.rotation.y + 10 });
+		}
+	};
+
 	//pink cube
 	const geometry = new THREE.BoxGeometry(1, 1, 1);
-	const material = new THREE.MeshBasicMaterial({ color: 'pink' });
+	const material = new THREE.MeshBasicMaterial({ color: parameters.color });
 	const mesh = new THREE.Mesh(geometry, material);
 	scene.add(mesh);
 
@@ -45,6 +55,7 @@
 	export const createScene = (canvasEl) => {
 		renderer = new THREE.WebGLRenderer({ canvas: canvasEl });
 		renderer.setSize(sizes.width, sizes.height);
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // 2 is usually enough, higher = expensive computing
 		renderer.render(scene, camera);
 	};
 
@@ -55,7 +66,7 @@
 	const clock = new THREE.Clock();
 
 	//animation
-	const tick = () => {
+	const tik = () => {
 		// time
 		// const currentTime = Date.now(); //tick's time
 		// const deltaTime = currentTime - time; //every frame's time difference
@@ -81,17 +92,55 @@
 
 		//render
 		renderer.render(scene, camera);
-		window.requestAnimationFrame(tick);
+		window.requestAnimationFrame(tik);
 	};
+
+	let hideDebug = true;
 
 	onMount(() => {
 		if (browser) {
 			window.addEventListener('mousemove', (e) => {
 				cursor.x = e.clientX / sizes.width - 0.5;
 				cursor.y = e.clientY / sizes.height - 0.5;
-				console.log(cursor);
 			});
+
+			// for full screen and adjusting to device sizes
+
+			// window.addEventListener('resize', () => {
+			// 	// update size
+			// 	sizes.width = window.innerWidth;
+			// 	sizes.height = window.innerHeight;
+
+			// 	//update camera
+			// 	camera.aspect = sizes.width / sizes.height;
+			// 	camera.updateProjectionMatrix();
+
+			// 	//update renderer
+			// 	renderer.setSize(sizes.width, sizes.height);
+			// 	renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // 2 is usually enough, higher = expensive computing
+			// });
+
+			// double click to toggle to fullscreen or back
+
+			window.addEventListener('dblclick', () => {
+				const fullscreen: any = document.fullscreenElement || document.webkitFullscreenElement;
+				if (!fullscreen) {
+					if (canvasEl.requestFullscreen) {
+						canvasEl.requestFullscreen();
+					} else if (canvasEl.webkitRequestFullscreen) {
+						canvasEl.webkitRequestFullscreen();
+					}
+				} else {
+					if (document.exitFullscreen) {
+						document.exitFullscreen();
+					} else if (document.webkitExitFullscreen) {
+						document.webkitExitFullscreen();
+					}
+				}
+			});
+
 			createScene(canvasEl);
+
 			//controls
 			const controls = new OrbitControls(camera, canvasEl);
 			controls.enableDamping = true;
@@ -106,6 +155,15 @@
 			};
 			tick();
 		}
+
+		// DEBUG - parameters must be added as an object to tweak
+		const gui = new GUI({ width: 400 });
+		// gui.add(mesh.position, 'y', -3, 3, 0.01); // the following might be more clear to read
+		gui.add(mesh.position, 'y').min(-3).max(3).step(0.01).name('cube y');
+		gui.add(mesh, 'visible');
+		gui.add(material, 'wireframe');
+		gui.addColor(parameters, 'color').onChange(() => material.color.set(parameters.color));
+		gui.add(parameters, 'spin');
 	});
 </script>
 
@@ -115,7 +173,7 @@
 
 <h1>Three.js x Sveltekit - Basic</h1>
 <section>
-	<p>Cube created with vanilla three.js</p>
+	<p>Cube created with vanilla three.js. Double click in canvas = toggle fullscreen mode</p>
 	<canvas bind:this={canvasEl} />
 </section>
 

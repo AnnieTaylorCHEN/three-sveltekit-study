@@ -108,6 +108,22 @@ button {
 	font-family: inherit;
 }
 
+button {
+	outline: none;
+	padding: 0.8rem 1.3rem 1rem;
+	color: var(--pure-white);
+	background-color: var(--accent-color);
+	border: 1px solid var(--accent-color);
+	border-radius: 25px;
+	margin: 0.5rem 0.5rem 1rem;
+}
+
+button:hover {
+	background-color: transparent;
+	border: 1px solid var(--accent-color);
+	color: var(--accent-color);
+}
+
 button:focus:not(:focus-visible) {
 	outline: none;
 }

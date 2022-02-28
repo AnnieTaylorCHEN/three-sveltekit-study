@@ -34,6 +34,8 @@
     "@fontsource/fira-mono": "^4.5.0",
     "@lukeed/uuid": "^2.0.0",
     "cookie": "^0.4.1",
+    "gsap": "^3.9.1",
+    "lil-gui": "^0.16.1",
     "three": "^0.138.0",
     "threlte": "^2.2.1"
   }
