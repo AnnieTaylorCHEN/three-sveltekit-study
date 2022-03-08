@@ -155,9 +155,11 @@
 		}
 
 		// DEBUG - parameters must be added as an object to tweak
-		const gui = new GUI({ width: 400 });
+		const gui = new GUI({ width: 350 });
 		// gui.add(mesh.position, 'y', -3, 3, 0.01); // the following might be more clear to read
+		gui.add(mesh.position, 'x').min(-3).max(3).step(0.01).name('cube x');
 		gui.add(mesh.position, 'y').min(-3).max(3).step(0.01).name('cube y');
+		gui.add(mesh.position, 'z').min(-3).max(3).step(0.01).name('cube z');
 		gui.add(mesh, 'visible');
 		gui.add(material, 'wireframe');
 		gui.addColor(parameters, 'color').onChange(() => material.color.set(parameters.color));
@@ -181,5 +183,9 @@
 		align-items: center;
 		justify-content: center;
 		margin: 0 auto;
+	}
+
+	:global(.lil-gui.autoPlace) {
+		top: 200px;
 	}
 </style>
