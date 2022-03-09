@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { browser } from '$app/env';
 	import * as THREE from 'three';
 	import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -8,6 +8,7 @@
 	let canvasEl: HTMLElement;
 	let material: any; // must be defined here so gui can access to it
 	let envPicSetNr: number = 4;
+	let gui;
 
 	const cursor = {
 		x: 0,
@@ -27,33 +28,6 @@
 	light.position.z = 4;
 	scene.add(light);
 
-	// objects
-
-	// const material = new THREE.MeshPhysicalMaterial()
-	// material.metalness = 0
-	// material.roughness = 1
-	// gui.add(material, 'metalness').min(0).max(1).step(0.0001)
-	// gui.add(material, 'roughness').min(0).max(1).step(0.0001)
-	// material.map = doorColorTexture
-	// material.aoMap = doorAmbientOcclusionTexture
-	// material.aoMapIntensity = 1
-	// material.displacementMap = doorHeightTexture
-	// material.displacementScale = 0.05
-	// material.metalnessMap = doorMetalnessTexture
-	// material.roughnessMap = doorRoughnessTexture
-	// material.normalMap = doorNormalTexture
-	// material.normalScale.set(0.5, 0.5)
-	// material.transparent = true
-	// material.alphaMap = doorAlphaTexture
-	// material.clearcoat = 1
-	// material.clearcoatRoughness = 0
-
-	// const material = new THREE.MeshStandardMaterial();
-	// material.metalness = 0.7;
-	// material.roughness = 0.2;
-	// gui.add(material, 'metalness').min(0).max(1).step(0.0001);
-	// gui.add(material, 'roughness').min(0).max(1).step(0.0001);
-	// material.envMap = environmentMapTexture;
 
 	// Sizes
 	const sizes = {
@@ -224,9 +198,13 @@
 		}
 
 		// DEBUG - parameters must be added as an object to tweak
-		const gui = new GUI({ width: 350 });
+		gui = new GUI({ width: 350 });
 		gui.add(material, 'metalness').min(0).max(1).step(0.0001);
 		gui.add(material, 'roughness').min(0).max(1).step(0.0001);
+	});
+
+	onDestroy(() => {
+		if (gui) gui.destroy();
 	});
 </script>
 
@@ -249,12 +227,5 @@
 
 	:global(.lil-gui.autoPlace) {
 		top: 150px;
-	}
-
-	input {
-		width: 50px;
-		height: 50px;
-		margin: 1rem;
-		font-size: 2rem;
 	}
 </style>

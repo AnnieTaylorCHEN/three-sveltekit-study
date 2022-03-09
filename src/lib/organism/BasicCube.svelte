@@ -95,6 +95,7 @@
 		window.requestAnimationFrame(tik);
 	};
 
+
 	onMount(() => {
 		if (browser) {
 			window.addEventListener('mousemove', (e) => {
@@ -164,7 +165,11 @@
 		gui.add(material, 'wireframe');
 		gui.addColor(parameters, 'color').onChange(() => material.color.set(parameters.color));
 		gui.add(parameters, 'spin');
+
+		return () => gui.destroy();
 	});
+
+	
 </script>
 
 <svelte:head>
