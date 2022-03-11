@@ -28,7 +28,6 @@
 	light.position.z = 4;
 	scene.add(light);
 
-
 	// Sizes
 	const sizes = {
 		width: 1200,
@@ -207,10 +206,6 @@
 		if (gui) gui.destroy();
 	});
 </script>
-
-<svelte:head>
-	<title>Basic Material</title>
-</svelte:head>
 
 <section>
 	<canvas bind:this={canvasEl} />

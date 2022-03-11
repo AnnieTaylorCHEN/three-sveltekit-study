@@ -96,7 +96,7 @@
 			const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 1, 1000);
 			camera.position.x = 1;
 			camera.position.y = 1;
-			camera.position.z = 2;
+			camera.position.z = 4;
 			scene.add(camera);
 
 			//Renderer
@@ -152,10 +152,6 @@
 		}
 	});
 </script>
-
-<svelte:head>
-	<title>Lights</title>
-</svelte:head>
 
 <section>
 	<p>Let there be light!</p>

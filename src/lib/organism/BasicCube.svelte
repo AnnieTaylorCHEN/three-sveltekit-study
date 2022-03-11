@@ -95,7 +95,6 @@
 		window.requestAnimationFrame(tik);
 	};
 
-
 	onMount(() => {
 		if (browser) {
 			window.addEventListener('mousemove', (e) => {
@@ -168,13 +167,7 @@
 
 		return () => gui.destroy();
 	});
-
-	
 </script>
-
-<svelte:head>
-	<title>Basic</title>
-</svelte:head>
 
 <section>
 	<p>Cube created with vanilla three.js. Double click in canvas = toggle fullscreen mode</p>

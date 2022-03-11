@@ -130,10 +130,6 @@
 	});
 </script>
 
-<svelte:head>
-	<title>Basic Material</title>
-</svelte:head>
-
 <section>
 	<canvas bind:this={canvasEl} />
 </section>
