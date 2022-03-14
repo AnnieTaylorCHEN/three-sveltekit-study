@@ -21,6 +21,9 @@
 			<li class:active={$page.url.pathname === '/shadows'}>
 				<a sveltekit:prefetch href="/shadows">Shadows</a>
 			</li>
+			<li class:active={$page.url.pathname === '/haunted-house'}>
+				<a sveltekit:prefetch href="/haunted-house">Haunted House</a>
+			</li>
 			<li class:active={$page.url.pathname === '/todos'}>
 				<a sveltekit:prefetch href="/todos">Todos</a>
 			</li>
