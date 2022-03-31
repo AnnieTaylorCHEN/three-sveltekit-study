@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 
-	const lightFontColor = $page.url.pathname === '/scroll';
+	$: lightFontColor = $page.url.pathname === '/scroll';
 </script>
 
 <header>
