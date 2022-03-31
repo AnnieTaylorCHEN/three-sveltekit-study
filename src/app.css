@@ -31,6 +31,19 @@ Typography
        url('./fonts/barlow-v11-latin-700.svg#Barlow') format('svg'); /* Legacy iOS */
 }
 
+/* im-fell-english-regular - latin */
+@font-face {
+  font-family: 'IM Fell English';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/im-fell-english-v10-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('./fonts/im-fell-english-v10-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/im-fell-english-v10-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./fonts/im-fell-english-v10-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('./fonts/im-fell-english-v10-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('./fonts/im-fell-english-v10-latin-regular.svg#IMFellEnglish') format('svg'); /* Legacy iOS */
+}
 
 
 :root {

@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+
+	const lightFontColor = $page.url.pathname === '/scroll';
 </script>
 
 <header>
 	<nav>
-		<ul>
+		<ul class:lightfontcolor={lightFontColor}>
 			<li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Home</a></li>
 			<li class:active={$page.url.pathname === '/basic'}>
 				<a sveltekit:prefetch href="/basic">Basic</a>
@@ -32,6 +34,9 @@
 			</li>
 			<li class:active={$page.url.pathname === '/raycaster'}>
 				<a sveltekit:prefetch href="/raycaster">Raycaster</a>
+			</li>
+			<li class:active={$page.url.pathname === '/scroll'}>
+				<a sveltekit:prefetch href="/scroll">Scroll</a>
 			</li>
 			<li class:active={$page.url.pathname === '/todos'}>
 				<a sveltekit:prefetch href="/todos">Todos</a>
@@ -96,7 +101,12 @@
 		transition: color 0.2s linear;
 	}
 
-	a:hover {
+	a:hover,
+	.lightfontcolor a:hover {
 		color: var(--accent-color);
+	}
+
+	.lightfontcolor a {
+		color: var(--pure-white);
 	}
 </style>
