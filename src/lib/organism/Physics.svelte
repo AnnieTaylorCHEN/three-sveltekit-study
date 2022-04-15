@@ -57,12 +57,12 @@
 			const cubeTextureLoader = new THREE.CubeTextureLoader();
 
 			const environmentMapTexture = cubeTextureLoader.load([
-				'/textures/environmentMaps/0/px.png',
-				'/textures/environmentMaps/0/nx.png',
-				'/textures/environmentMaps/0/py.png',
-				'/textures/environmentMaps/0/ny.png',
-				'/textures/environmentMaps/0/pz.png',
-				'/textures/environmentMaps/0/nz.png'
+				'/textures/environmentMaps/3/px.jpg',
+				'/textures/environmentMaps/3/nx.jpg',
+				'/textures/environmentMaps/3/py.jpg',
+				'/textures/environmentMaps/3/ny.jpg',
+				'/textures/environmentMaps/3/pz.jpg',
+				'/textures/environmentMaps/3/nz.jpg'
 			]);
 
 			// physics
@@ -95,10 +95,10 @@
 			// Create sphere
 			const sphereGeometry = new THREE.SphereGeometry(1, 20, 20);
 			const sphereMaterial = new THREE.MeshStandardMaterial({
-				metalness: 0.3,
-				roughness: 0.4,
-				envMap: environmentMapTexture,
-				envMapIntensity: 0.5
+				metalness: 1,
+				roughness: 0,
+				envMap: environmentMapTexture
+				// envMapIntensity: 0.5
 			});
 
 			const createSphere = (radius, position) => {
@@ -129,10 +129,10 @@
 			// Create box
 			const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 			const boxMaterial = new THREE.MeshStandardMaterial({
-				metalness: 0.3,
-				roughness: 0.4,
-				envMap: environmentMapTexture,
-				envMapIntensity: 0.5
+				metalness: 1,
+				roughness: 0,
+				envMap: environmentMapTexture
+				// envMapIntensity: 0.5
 			});
 			const createBox = (width, height, depth, position) => {
 				// Three.js mesh
@@ -168,8 +168,8 @@
 					color: '#777777',
 					metalness: 0.3,
 					roughness: 0.4,
-					envMap: environmentMapTexture,
-					envMapIntensity: 0.5
+					envMap: environmentMapTexture
+					// envMapIntensity: 0.5
 				})
 			);
 			floor.receiveShadow = true;
@@ -204,7 +204,7 @@
 			// renderer
 			let renderer: THREE.WebGLRenderer;
 			const createScene = (canvasEl) => {
-				renderer = new THREE.WebGLRenderer({ canvas: canvasEl, alpha: true });
+				renderer = new THREE.WebGLRenderer({ canvas: canvasEl });
 				renderer.setSize(sizes.width, sizes.height);
 				renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // 2 is usually enough, higher = expensive computing
 				renderer.render(scene, camera);
@@ -304,5 +304,9 @@
 		align-items: center;
 		justify-content: center;
 		margin: 0 auto;
+	}
+
+	:global(.lil-gui.autoPlace) {
+		top: 150px;
 	}
 </style>
