@@ -131,7 +131,7 @@
 </script>
 
 <section>
-	<p>Click on control's parameters to rain balls and boxes!</p>
+	<p>Just a handsome running fox.</p>
 	<canvas bind:this={canvasEl} />
 </section>
 
