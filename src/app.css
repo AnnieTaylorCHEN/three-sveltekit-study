@@ -84,6 +84,7 @@ p {
 	font-weight: 400;
 	color: var(--text-color);
 	line-height: 1.5;
+	margin-top: 0;
 }
 
 a {

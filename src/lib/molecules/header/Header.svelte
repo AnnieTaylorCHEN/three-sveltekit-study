@@ -47,6 +47,9 @@
 			<li class:active={$page.url.pathname === '/camera'}>
 				<a sveltekit:prefetch href="/camera">Camera</a>
 			</li>
+			<li class:active={$page.url.pathname === '/brain-stem'}>
+				<a sveltekit:prefetch href="/brain-stem">Brain Stem</a>
+			</li>
 			<li class:active={$page.url.pathname === '/todos'}>
 				<a sveltekit:prefetch href="/todos">Todos</a>
 			</li>
@@ -70,10 +73,11 @@
 		position: relative;
 		padding: 0;
 		margin: 0;
-		height: 3em;
+		height: 3rem;
 		display: flex;
 		justify-content: center;
-		align-items: center;
+		align-items: flex-start;
+		flex-wrap: wrap;
 		list-style: none;
 		background: transparent;
 		background-size: contain;
@@ -100,7 +104,7 @@
 		display: flex;
 		height: 100%;
 		align-items: center;
-		padding: 0 1em;
+		padding: 0 0.7rem;
 		color: var(--heading-color);
 		font-weight: 700;
 		font-size: 0.8rem;

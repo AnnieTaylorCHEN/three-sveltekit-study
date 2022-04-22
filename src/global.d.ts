@@ -11,3 +11,7 @@ interface Document {
 interface HTMLElement {
     webkitRequestFullscreen: any;
 }
+
+interface Window {
+    experience: any;
+}
