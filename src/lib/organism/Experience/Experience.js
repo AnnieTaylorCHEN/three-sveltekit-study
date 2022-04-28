@@ -16,12 +16,12 @@ export default class Experience
 {
     constructor(_canvas)
     {
-        // Singleton
-        if(instance)
-        {
-            return instance
-        }
-        instance = this
+        // Singleton: note this might not work with SvelteKit with the routing
+        // if(instance)
+        // {
+        //     return instance
+        // }
+        // instance = this
         
         // Global access
         window.experience = this

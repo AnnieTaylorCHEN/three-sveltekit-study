@@ -1,14 +1,12 @@
 import * as THREE from 'three'
-import Experience from '../Experience.js'
-
 export default class Environment
 {
-    constructor()
+    constructor(_experience)
     {
-        this.experience = new Experience()
-        this.scene = this.experience.scene
-        this.resources = this.experience.resources
-        this.debug = this.experience.debug
+    
+        this.scene = _experience.scene
+        this.resources = _experience.resources
+        this.debug = _experience.debug
         
         // Debug
         if(this.debug.active)

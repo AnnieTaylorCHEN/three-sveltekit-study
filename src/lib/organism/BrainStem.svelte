@@ -16,7 +16,6 @@
 
 <section>
 	<p>Click on the debug button below for control access to make magic happen!</p>
-	<p>TODO: I need to fix the loading issue. If it doesn't load, refresh or reload the page!</p>
 	<a href="/brain-stem#debug">debug</a>
 	<canvas bind:this={canvasEl} />
 </section>

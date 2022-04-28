@@ -14,10 +14,10 @@ export default class World
         this.resources.on('ready', () =>
         {
             // Setup
-            this.floor = new Floor()
-            this.fox = new Fox()
-            this.brainStem = new BrainStem()
-            this.environment = new Environment()
+            this.floor = new Floor(_experience)
+            this.fox = new Fox(_experience)
+            this.brainStem = new BrainStem(_experience)
+            this.environment = new Environment(_experience)
         })
     }
 

@@ -1,13 +1,10 @@
 import * as THREE from 'three'
-import Experience from '../Experience.js'
-
 export default class Floor
 {
-    constructor()
+    constructor(_experience)
     {
-        this.experience = new Experience()
-        this.scene = this.experience.scene
-        this.resources = this.experience.resources
+        this.scene = _experience.scene
+        this.resources = _experience.resources
 
         this.setGeometry()
         this.setTextures()
